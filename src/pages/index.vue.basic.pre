@@ -1,0 +1,119 @@
+<template>
+  
+  <q-page padding>
+    <button style="position: absolute; right: 10px" @click="counter++">
+      {{ counter }}
+    </button>
+    <input v-model="message" 
+    @keyup.esc="clearMessage"
+    @keyup.enter="alertMessage" 
+    v-autofocus
+    :style="errorStyle"
+    ref="messageInput" />
+
+    <button @click="clearMessage" >Clear</button>
+
+    <div>{{ message.length }}</div>
+
+    <h5 
+    v-if="message.length"
+    class="border-grey">{{message}}
+    </h5>
+    <h6 v-else>No message Entered</h6>
+    <hr>
+    <p>Uppercase message: {{ messageUppercase }}</p>
+    <p>Lowercase message: {{ message | messageLowercase }}</p>
+  </q-page >
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message:'I Love Vue.js!',
+      counter: 0
+    }
+  },
+  computed: {
+    messageUppercase() {
+      return this.message.toUpperCase()
+    },
+    errorStyle() {
+      if (this.message.length < 22) {
+        return false
+        } else {
+        return {  
+          'color' : 'red',
+          'background' : 'pink'
+        }
+      }
+    } 
+  },
+  methods: {
+    clearMessage() {
+      this.message = ''
+    },
+    alertMessage() {
+      alert(this.message)
+    }
+  },
+  filters: {
+    messageLowercase(value) {
+      return value.toLowerCase()
+    }
+  },
+  directives: {
+    autofocus: {
+      inserted(el) {
+        el.focus
+      }
+    }
+  },
+  mounted() {
+      console.log(this.$refs)
+      this.$refs.messageInput.className = 'bg-green'
+    }
+
+}
+</script>
+<style>
+  .border-grey{
+    border: 1px solid grey;
+    padding:8px;
+  }
+  input, button {
+    font-size: 23px;
+  }
+  .error {
+    color: red;
+    background: pink;
+  }
+</style>
+
+
+
+this.$axios(`${ this.apiUrl }?lat=${ this.lat }&lon=${ this.lon }&appid=${ this.apiKey }&units=imperial`).then(response => {
+        this.weatherData = response.data
+        })
+      https://www.fillmurray.com/100/100
+
+<img :src="`http://openweathermap.org/img/wn/${ weatherData.weather[0].icon }@2x.png`" alt="" class="w-img">
+
+`http://openweathermap.org/img/wn/${ weatherData.weather[0].icon }@2x.png` 
+
+weatherData.weather[0].icon     
+
+../assets/weather-icons/${weatherData.weather[0].icon}.svg
+
+
+removeNorD: null
+
+.then(this.removeNorD = this.weatherData)
+
+
+../assets/weather-icons/50.svg
+
+${ weatherData.weather[0].icon }
+
+imgUrl: 'https://raw.githubusercontent.com/richwalton/owd_icons/0eb9d6c7f6350f7662d9d4b33c3bf8111cf74cb9/',
+imgUrlPng:'https://raw.githubusercontent.com/richwalton/owd_icons/master/'
