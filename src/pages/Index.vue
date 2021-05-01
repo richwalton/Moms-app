@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex column">
+  <q-page class="flex column" >
     <div class="col q-pt-lg q-px-md">
       <q-input
         v-model="search"
@@ -9,9 +9,9 @@
         borderless
       > 
         <template v-slot:before>
-          <!-- <q-icon
+          <q-icon
             @click="getLocation"
-            name="my_location"/> -->
+            name="my_location"/>
         </template>
 
         <template v-slot:append>
@@ -43,18 +43,18 @@
       </div>
     </template>
     <template v-else >
-      <!-- <div class="col column text-center text-white">
+      <div class="col column text-center text-white">
         <div class="col text-h2 text-weight-thin title">
           Quasar Weather
         </div>
         <q-btn
-          @load="getWeatherByCoords"
+          @click="getWeatherByCoords"
           class="col" 
           flat>
           <q-icon left size="3em" name="my_location" />
           <div>Find My Location</div>
         </q-btn>
-      </div>  -->
+      </div> 
     </template>
 
     <div class="col skyline"></div>
@@ -75,15 +75,27 @@ export default {
       imgUrl:'https://raw.githubusercontent.com/richwalton/owd_icons/master/'
     }
   },
+  computed: {
+    // bgClass() {
+    //   if (this.weatherData) {
+    //     if (this.weatherData.weather[0].icon.endsWith('n')) {
+    //       return 'bg-night'
+    //     }
+    //     else {
+    //       return 'bg-day'
+    //     }
+    //   }
+    // }
+  },
   methods: {
-    // getLocation() {
-    //   navigator.geolocation.getCurrentPosition(position => {
-    //     console.log('position: ', position)
-    //     this.lat = position.coords.latitude
-    //     this.lon = position.coords.longitude
-    //     this.getWeatherByCoords()
-    //   })
-    // },
+    getLocation() {
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log('position: ', position)
+        this.lat = position.coords.latitude
+        this.lon = position.coords.longitude
+        this.getWeatherByCoords()
+      })
+    },
     getWeatherByCoords() {
       this.$axios(`${ this.apiUrl }?q=Tucson,us&appid=${ this.apiKey }&units=imperial`).then(response => {
         this.weatherData = response.data
@@ -95,10 +107,8 @@ export default {
         this.weatherData = response.data
       })  
     }
-  },
-  beforeMount(){
-    this.getWeatherByCoords()
   }
+  
 }
 </script>
 <style lang="sass">
@@ -123,6 +133,4 @@ export default {
   .temp
     letter-spacing: 0em
     margin-right: -12px
-
-
 </style>    

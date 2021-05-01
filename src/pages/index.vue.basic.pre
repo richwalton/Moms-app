@@ -117,3 +117,38 @@ ${ weatherData.weather[0].icon }
 
 imgUrl: 'https://raw.githubusercontent.com/richwalton/owd_icons/0eb9d6c7f6350f7662d9d4b33c3bf8111cf74cb9/',
 imgUrlPng:'https://raw.githubusercontent.com/richwalton/owd_icons/master/'
+
+
+bgClass: () => {
+      console.log('bgClass')
+      if (this.weatherData) {
+        
+        if (this.weatherData.weather[0].icon.endsWith('n')) {
+          console.log('bg-night')
+          return 'bg-night'
+        }
+        else {
+          console.log('bg-night')
+          return 'bg-night'
+        }
+      }
+    }
+{'bgClass' : 'bgClass'}
+
+bgClass () {
+      
+      console.log('bgClass')
+      return this.weatherData.weather[0].icon.endsWith('n') ? 'bg-night' :'bg-day'
+        
+      
+    }
+
+
+    // beforeMount(){
+  //   this.getWeatherByCoords()
+  // }
+
+
+  :class="bgClass"
+
+  @load="getWeatherByCoords"
