@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex column" >
+  <q-page class="flex column" :class='bgClass' >
     <div class="col q-pt-lg q-px-md">
       <q-input
         v-model="search"
@@ -76,16 +76,20 @@ export default {
     }
   },
   computed: {
-    // bgClass() {
-    //   if (this.weatherData) {
-    //     if (this.weatherData.weather[0].icon.endsWith('n')) {
-    //       return 'bg-night'
-    //     }
-    //     else {
-    //       return 'bg-day'
-    //     }
-    //   }
-    // }
+    bgClass() {
+      if (this.weatherData) {
+        if (this.weatherData.weather[0].icon.endsWith('n')) {
+          console.log('bg-night');
+          return 'bg-night'
+          
+        }
+        else {
+          console.log('bg-day');
+          return 'bg-day'
+        }
+      }
+      
+    }
   },
   methods: {
     getLocation() {
@@ -115,7 +119,12 @@ export default {
   .q-field
     font-size: 24px
   .q-page
+    .q-page
     background: linear-gradient(to top, #0575e6, #00356af0, #021b79)
+    &.bg-night
+      background: linear-gradient(to bottom, #232526, #0c1c79)
+    &.bg-day
+      background: linear-gradient(to bottom, #72a5f2, #2970dc)
   .degree
     top: -40px
   .title
@@ -133,4 +142,4 @@ export default {
   .temp
     letter-spacing: 0em
     margin-right: -12px
-</style>    
+</style>  

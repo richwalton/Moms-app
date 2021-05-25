@@ -31,3 +31,5 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+# Rw added files
+index1.vue
